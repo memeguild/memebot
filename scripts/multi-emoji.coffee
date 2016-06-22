@@ -86,6 +86,11 @@ responses = {
     ':yes_10::yes_11::yes_12:',
     ':yes_20::yes_21::yes_22:',
   ].join('\n'),
+
+  'bongos': [
+    ':horse_bongos_1_6::horse_bongos_2_6::horse_bongos_3_6:',
+    ':horse_bongos_4_6::horse_bongos_5_6::horse_bongos_6_6:',
+  ].join('\n'),
 }
 
 emojis = Object.keys(responses).join('|')
