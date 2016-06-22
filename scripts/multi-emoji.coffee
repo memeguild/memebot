@@ -80,7 +80,7 @@ responses = {
   'mission_accomplished': [
     (":mission_accomplished_#{n}:" for n in [1..5]).join(''),
   ].join('\n'),
-  
+
   'yes': [
     ':yes_00::yes_01::yes_02:',
     ':yes_10::yes_11::yes_12:',
@@ -90,6 +90,12 @@ responses = {
   'bongos': [
     ':horse_bongos_1_6::horse_bongos_2_6::horse_bongos_3_6:',
     ':horse_bongos_4_6::horse_bongos_5_6::horse_bongos_6_6:',
+  ].join('\n'),
+
+  'whoa3': [
+    ':whoa3_00::whoa3_01::whoa3_02:',
+    ':whoa3_10::whoa3_11::whoa3_12:',
+    ':whoa3_20::whoa3_21::whoa3_22:',
   ].join('\n'),
 }
 
