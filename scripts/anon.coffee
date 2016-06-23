@@ -2,7 +2,7 @@
 #   Anonymously post to another channel...
 #
 # Commands:
-#   hubot anon <#channel> <message>
+#   hubot anon #channel message
 
 module.exports = (robot) ->
   robot.respond /anon (#[a-z1-9_]+)\s+(.*)/i, (msg) ->
