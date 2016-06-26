@@ -97,6 +97,12 @@ responses = {
     ':whoa3_10::whoa3_11::whoa3_12:',
     ':whoa3_20::whoa3_21::whoa3_22:',
   ].join('\n'),
+
+  'hiptobesquare': [
+    ':hiptobesquare_00::hiptobesquare_01:',
+    ':hiptobesquare_10::hiptobesquare_11:',
+    ':hiptobesquare_20::hiptobesquare_21:',
+  ].join('\n'),
 }
 
 emojis = Object.keys(responses).join('|')
