@@ -134,7 +134,7 @@ module.exports = (robot) ->
         msg.send responses[key]
 
         # Use a setTimout to avoid rate limiting.
-        setTimeout(goAgain, 250)
+        setTimeout(goAgain, 1100)
     )()
 
   robot.respond /(?:list emoji|emoji list)/i, (msg) ->
