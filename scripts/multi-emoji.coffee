@@ -10,7 +10,8 @@
 # Commands:
 #   hubot emoji <multi-emoji name> - Respond with the requested multi-emoji.
 #   hubot emoji bomb <N> - Return N (at most 50) random multi-emoji.
-#   hubot emoji list - List all the emoji's I know.
+#   hubot emoji list - List all the emoji I know.
+#   hubot emoji show - Show all of the emoji I know.
 #   hubot emoji random - Respond with a random emoji.
 
 responses = {
@@ -119,6 +120,22 @@ module.exports = (robot) ->
   robot.respond /emoji bomb(?:\s+(\d+))?/i, (msg) ->
     count = Math.min(parseInt(msg.match[1]) || 5, 50)
     msg.send getRandomEmoji(count).join('\n')
+
+  robot.respond /(?:show emoji|emoji show)/i, (msg) ->
+    keys = Object.keys(responses)
+
+    (goAgain = () ->
+      if keys.length
+        key = keys.shift()
+
+        # Output the name and emoji in separate messages so that the
+        # multi-emoji are rendered in large mode.
+        msg.send "#{key}:"
+        msg.send responses[key]
+
+        # Use a setTimout to avoid rate limiting.
+        setTimeout(goAgain, 250)
+    )()
 
   robot.respond /(?:list emoji|emoji list)/i, (msg) ->
     keys = ("\"#{key}\"" for key in Object.keys(responses))
