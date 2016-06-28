@@ -76,7 +76,7 @@ imageMe = (msg, query, animated, faces, cb) ->
     q =
       q: query,
       searchType:'image',
-      safe: process.env.HUBOT_GOOGLE_SAFE_SEARCH || 'high',
+      safe: 'off',
       fields:'items(link)',
       cx: googleCseId,
       key: googleApiKey
