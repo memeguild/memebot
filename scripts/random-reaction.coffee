@@ -23,7 +23,8 @@ REPLIES = [
   ':wellmemed:',
 ]
 
-CHANCE = 0.075;
+# Percentage chance that memebot will respond to messages.
+CHANCE = 4 / 100
 
 module.exports = (robot) ->
   robot.hear /.*/i, (msg) ->
