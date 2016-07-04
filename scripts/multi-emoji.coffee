@@ -109,6 +109,12 @@ responses = {
     ':he-man_00::he-man_01:',
     ':he-man_10::he-man_11:',
   ].join('\n'),
+
+  'testingthewater': [
+    ':testingthewater_00::testingthewater_01::testingthewater_02:',
+    ':testingthewater_10::testingthewater_11::testingthewater_12:',
+    ':testingthewater_20::testingthewater_21::testingthewater_22:',
+  ].join('\n'),
 }
 
 emojis = Object.keys(responses).join('|')
