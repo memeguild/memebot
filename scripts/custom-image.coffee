@@ -13,52 +13,77 @@
 #   hubot taxiderme <query> - Bad taxidermied animals
 
 animals = [
-    "alligator",
-    "armadillo",
-    "bear",
-    "bobcat",
-    "cat",
-    "cheetah",
-    "cougar",
-    "cow",
-    "deer",
-    "dog",
-    "dolphin",
-    "dragonfly",
-    "duck",
-    "eagle",
-    "elephant",
-    "elk",
-    "fish",
-    "fox",
-    "frog",
-    "giraffe",
-    "goat",
-    "gorilla",
-    "grandma",
-    "grandpa",
-    "hedgehog",
-    "horse",
-    "human",
-    "leopard",
-    "lion",
-    "lizard",
-    "monkey",
-    "owl",
-    "person",
-    "pigeon"
-    "raccoon",
-    "shark",
-    "weasel",
-    "wolf",
-    "yes",
-    "zebra",
+  "alligator",
+  "armadillo",
+  "bear",
+  "bobcat",
+  "cat",
+  "cheetah",
+  "cougar",
+  "cow",
+  "deer",
+  "dog",
+  "dolphin",
+  "dragonfly",
+  "duck",
+  "eagle",
+  "elephant",
+  "elk",
+  "fish",
+  "fox",
+  "frog",
+  "giraffe",
+  "goat",
+  "gorilla",
+  "grandma",
+  "grandpa",
+  "hedgehog",
+  "horse",
+  "human",
+  "leopard",
+  "lion",
+  "lizard",
+  "monkey",
+  "owl",
+  "person",
+  "pigeon"
+  "raccoon",
+  "shark",
+  "weasel",
+  "wolf",
+  "yes",
+  "zebra",
+]
+
+characters = [
+  # Empty string to let inkbot decide...
+  "",
+  "captain america",
+  "dc",
+  "disney",
+  "flash",
+  "hulk",
+  "ironman",
+  "magneto",
+  "marvel",
+  "mystique",
+  "ninja turtles",
+  "pokemon",
+  "professor x",
+  "spiderman",
+  "thor",
+  "wolverine",
 ]
 
 module.exports = (robot) ->
   robot.respond /taxiderme\s*(.+)?/i, (msg) ->
     animal = msg.match[1] or msg.random animals
     query = "bad taxidermy #{animal}"
+    imageMe msg, query, (url) ->
+      msg.send url
+  robot.respond /cosplay\s*me\s*(.+)?/i, (msg) ->
+    type = msg.match[1] or msg.random characters
+    query = "bad cosplay #{type}"
     imageMe msg, query, (url) ->
       msg.send url
 
