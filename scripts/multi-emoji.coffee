@@ -115,6 +115,12 @@ responses = {
     ':testingthewater_10::testingthewater_11::testingthewater_12:',
     ':testingthewater_20::testingthewater_21::testingthewater_22:',
   ].join('\n'),
+  
+  'such_fedora': [
+    ':such_fedora_00::such_fedora_01::such_fedora_02:',
+    ':such_fedora_10::such_fedora_11::such_fedora_12:',
+    ':such_fedora_20::such_fedora_21::such_fedora_22:',
+  ].join('\n'),
 }
 
 emojis = Object.keys(responses).join('|')
