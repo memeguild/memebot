@@ -20,7 +20,7 @@
     "hubot-shipit": "^0.2.0",
     "hubot-slack": "^3.4.2",
     "hubot-urban": "^1.0.1",
-    "shrugapillar": "^1.0.0"
+    "shrugapillar": "^1.0.2"
   },
   "engines": {
     "node": "0.10.x"
