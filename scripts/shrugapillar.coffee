@@ -1,12 +1,4 @@
 # Description:
-#
-#      ᕙ ᕗ
-#   ¯\_(ツ)_/¯
-#   ¯\_(  )_/¯
-#   ¯\_(  )_/¯
-#   ¯\_(  )_/¯
-#   ¯\_(__)_/¯
-#
 #   A fine respite from the usual mass-produced fare we address here, the
 #   shrugapillar is an interesting play on two themes. One one hand, we have
 #   our cynic, the shrug man emoji, whose very expression is one of an
@@ -39,7 +31,136 @@
 #         shrugapillar.
 #   hubot shrugapillar list - Prints all know shrugapillars.
 
-Shrugapillar = require "shrugapillar"
+BASE_TAXONOMY =
+  regnum: "mememalia"
+  phylum: "arthropoda"
+  classis: "insecta"
+  ordo: "lepidoptera"
+  familia: "nymphalidae"
+  genus: "depulso"
+
+PROGENITOR =
+  species: "marcinekae"
+  commonName: "Shrugapillar"
+  antenna: "ᜒ    ᕙ  ᕗ",
+  head: "¯\\_(ツ)_/¯"
+  body: "¯\\_(    )_/¯"
+  booty: "¯\\_( _ )_/¯"
+
+MUTATIONS = [
+    species: "inflatus"
+    commonName: "Smugapillar"
+    antenna: "ᜒ   ᕙ     ᕗ",
+    head: "¯\\_(⌣̯̀⌣́)_/¯"
+    body: "¯\\_(       )_/¯"
+    booty: " ¯\_( __ )_/¯"
+  ,
+    species: "incertus"
+    commonName: "Unsureapillar"
+    antenna: "ᜒ   ᕙ    ᕗ",
+    head: "¯\\_(º_o)_/¯"
+    body: "¯\\_(     )_/¯"
+    booty: "¯\\_(  _ )_/¯"
+  ,
+    species: "ignavia"
+    commonName: "Apathetapillar"
+    antenna: "ᜒ   ᕙ     ᕗ",
+    head: "¯\\_(´-｀)_/¯"
+    body: "¯\\_(       )_/¯"
+    booty: "¯\\_(____)_/¯"
+  ,
+    species: "indignati"
+    commonName: "Indignapillar"
+    antenna: "ᜒ    ᕙ    ᕗ",
+    head: "¯\\_(ಠ_ಠ)_/¯"
+    body: "¯\\_(       )_/¯"
+    booty: "¯\\_(____)_/¯"
+  ,
+    species: "contentus"
+    commonName: "Contentapillar"
+    antenna: "ᜒ     ᕙ      ᕗ",
+    head: "¯\\_(◉‿◉)_/¯"
+    body: "¯\\_(            )_/¯"
+    booty: "¯\\_(_______)_/¯"
+  ,
+    species: "exasperentur"
+    commonName: "Desuapillar"
+    characteristics: ""
+    antenna: "ᜒ    ᕙ       ᕗ",
+    head: "¯\\_( ͡° ͜ʖ ͡°)_/¯"
+    body: "¯\\_(          )_/¯"
+    booty: "¯\\_( ____ )_/¯"
+  ,
+    species: "omnipotentem"
+    commonName: "Illumipillar"
+    antenna: "ᜒ   ᕙ      ᕗ",
+    head: "¯\\_(👁)_/¯"
+    body: "¯\\_(     )_/¯"
+    booty: "¯\\_(___)_/¯"
+    description: "Knows all. Sees all. Controls all."
+  ,
+    species: "lepidoptera"
+    commonName: "Concealapillar"
+    antenna: "     ᕙ       ᕗ",
+    head: "¯\\_(ಥ﹏ಥ)_/¯"
+    body: "¯\\_(          )_/¯"
+    booty: "¯\\_( ____ )_/¯"
+]
+
+formatName = (def) =>
+    "#{def.commonName} (_#{BASE_TAXONOMY.genus} #{def.species}_)"
+
+# Given a shrugapillar definition, calculate the maximum allowed length so
+# as to avoid rate limiting.
+calculateMaxLength = (def) =>
+  MAX_MSG_SIZE = process.env.MAX_MSG_SIZE || 4000;
+
+  # A Guess at the size of the surrounding JSON.
+  SAFETY_MARGIN = 50
+
+  baseSize = SAFETY_MARGIN +
+    def.antenna.length + 1 +
+    def.head.length + 1 +
+    def.booty.length + 1 +
+    formatName(def)
+
+  Math.floor((MAX_MSG_SIZE - baseSize) / def.body.length)
+
+# Augment each shrugapillar to include the maximum allowed length.
+for shrugapillar in [PROGENITOR, MUTATIONS...]
+  shrugapillar.maxLength = calculateMaxLength(shrugapillar)
+
+
+# Start the population out with 100 basic shrugapillars.
+POPULATION = (PROGENITOR for [0...1])
+
+# Then add one of each special shrugapillar.
+POPULATION.push(MUTATIONS...)
+
+makeShrugapillar = (def, length, verbose = false) =>
+  if !length || length < 1
+    length = Math.round(Math.random() * 9) + 1
+  else if length > def.maxLength
+    length = def.maxLength
+
+  shrugapillar = (def.body for [0...length])
+  shrugapillar.unshift def.antenna, def.head
+  shrugapillar.push def.booty
+  if verbose
+    shrugapillar.push "*Name:* #{formatName(def)}"
+    shrugapillar.push "*Kingdom:* #{def.regnum or BASE_TAXONOMY.regnum}"
+    shrugapillar.push "*Phylum:* #{def.phylum or BASE_TAXONOMY.phylum}"
+    shrugapillar.push "*Class:* #{def.classis or BASE_TAXONOMY.classis}"
+    shrugapillar.push "*Order:* #{def.ordo or BASE_TAXONOMY.ordo}"
+    shrugapillar.push "*Family:* #{def.familia or BASE_TAXONOMY.familia}"
+    if def.description
+      shrugapillar.push "*Description:* #{def.description}"
+  shrugapillar.join('\n')
+
+listShrugapillars = () =>
+  list = [PROGENITOR, MUTATIONS...].map((def) =>
+    "    #{formatName(def)}").join("\n")
+  "These are the know shrugapillars:\n#{list}"
 
 RESPONSE_MATCHER = ///
   # Match messages starting with shrugapillar.
@@ -55,7 +176,7 @@ RESPONSE_MATCHER = ///
     (\d+)
   )?
 
-  # Look for verbose or describe flag to learn more about the shrugapillar.
+  # Look for verbose or describe flag to learn more about the shurgapillar.
   (?:\s+
     ((?:verbose)|(?:describe))
   )?
@@ -71,50 +192,6 @@ A note from the artist:
 > Kait Marcinek
 > Meme Artist
 """
-
-# A Guess at the size of the surrounding JSON.
-MSG_SAFETY_MARGIN = 50
-
-MAX_MSG_SIZE = (process.env.MAX_MSG_SIZE || 4000) - MSG_SAFETY_MARGIN;
-
-formatName = (shrugapillar) =>
-  def = shrugapillar.getDefinition()
-  "#{def.commonName} (_#{def.genus} #{def.species}_)"
-
-renderShrugapillar = (shrugapillar, length, verbose = false) =>
-  info = []
-
-  if verbose
-    def = shrugapillar.getDefinition()
-    info.push "*Name:* #{formatName(shrugapillar)}"
-    info.push "*Kingdom:* #{def.regnum}"
-    info.push "*Phylum:* #{def.phylum}"
-    info.push "*Class:* #{def.classis}"
-    info.push "*Order:* #{def.ordo}"
-    info.push "*Family:* #{def.familia}"
-    if def.description
-      info.push "*Description:* #{def.description}"
-
-  info = info.join('\n')
-
-  result = shrugapillar.render({
-    type: "slack"
-    length: length
-    maxNumCharacters: MAX_MSG_SIZE - info.length
-  })
-
-  if info.length
-    [result, info].join('\n')
-  else
-    result
-
-listShrugapillars = () =>
-  Shrugapillar.getAll().map((shrugapillar) =>
-    [
-      "*#{formatName(shrugapillar)}:*"
-      renderShrugapillar(shrugapillar, 1, false)
-    ].join("\n")
-  ).join("\n\n")
 
 module.exports = (robot) ->
   robot.respond RESPONSE_MATCHER, (msg) ->
@@ -132,15 +209,23 @@ module.exports = (robot) ->
       else if name.toLowerCase() is "explain"
         msg.send EXPLANATION
     else
-      shrugapillar = msg.random Shrugapillar.getAll()
+      def = msg.random POPULATION
 
       # If the user specified a particular name then try to find one
       # that matches.
       if name
-        if Shrugapillar.get(name)
-          shrugapillar = Shrugapillar.get(name)
-        else
-          msg.send "Couldn't find a shrugapillar \"#{name}\", so here's a " +
+        found = false
+        name = name.toLowerCase();
+
+        for shrugapillar in [PROGENITOR, MUTATIONS...]
+          commonName = shrugapillar.commonName.toLowerCase()
+          species = shrugapillar.species.toLowerCase();
+          if name is commonName or name is species
+            def = shrugapillar
+            found = true
+            break
+        if not found
+          msg.send "Couldn't find shrugapillar \"#{name}\", so here's a " +
               "random one instead:"
 
-      msg.send renderShrugapillar(shrugapillar, length, verbose)
+      msg.send makeShrugapillar(def, length, verbose)
