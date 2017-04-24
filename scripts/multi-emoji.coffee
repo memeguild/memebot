@@ -25,11 +25,6 @@ responses = {
     ':excellent_choice_n10::excellent_choice_n11::excellent_choice_n12::excellent_choice_n13:',
   ].join('\n'),
 
-  'pep_nation': [
-    ':pep_nation_1_4::pep_nation_2_4:',
-    ':pep_nation_3_4::pep_nation_4_4:',
-  ].join('\n'),
-
   'spagetti': ':meme3::meme4:',
 
   'terrific': [
@@ -63,12 +58,6 @@ responses = {
     ':conflicted_00::conflicted_01::conflicted_02:',
     ':conflicted_10::conflicted_11::conflicted_12:',
     ':conflicted_20::conflicted_21::conflicted_22:',
-  ].join('\n'),
-
-  'disguise': [
-    ':disguise_00::disguise_01::disguise_02:',
-    ':disguise_10::disguise_11::disguise_12:',
-    ':disguise_20::disguise_21::disguise_22:',
   ].join('\n'),
 
   # НO0ОଠOOOOOОଠଠOoooᵒᵒᵒᵒᵒᵒᵒᵒᵒ
