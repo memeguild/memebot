@@ -6,8 +6,6 @@ REPLIES = [
   ':applause:',
   ':bg:',
   ':clap:',
-  ':cooliopep:',
-  ':coolpep:',
   ':disgust:',
   ':ethan:',
   ':fieri:',
@@ -18,7 +16,6 @@ REPLIES = [
   ':lmao:',
   ':mattdamon:',
   ':noice:',
-  ':pep_nation:',
   ':prettygood:',
   ':spicy_meatball:',
   ':terrific_00::terrific_01::terrific_02:\n:terrific_10::terrific_11::terrific_12:',
@@ -32,7 +29,7 @@ REPLIES = [
 ]
 
 # Percentage chance that memebot will respond to messages.
-CHANCE = 4 / 100
+CHANCE = 3 / 100
 
 module.exports = (robot) ->
   robot.hear /.*/i, (msg) ->
